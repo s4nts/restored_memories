@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: 'export', // Comentado para funcionar em modo dev
+  // O GitHub Actions com static_site_generator: next configura automaticamente
+  // output: 'export' e basePath, então não definimos aqui
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -8,11 +9,8 @@ const nextConfig = {
     unoptimized: true,
     remotePatterns: [],
   },
+  // Garantir que assets estáticos sejam copiados corretamente
+  // O Next.js copia automaticamente a pasta public/ para out/ quando usa output: 'export'
 };
-
-// Para produção, descomente a linha output: 'export' acima
-if (process.env.NODE_ENV === 'production' && process.env.STATIC_EXPORT === 'true') {
-  nextConfig.output = 'export';
-}
 
 module.exports = nextConfig;

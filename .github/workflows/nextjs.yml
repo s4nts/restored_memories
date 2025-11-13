@@ -74,7 +74,29 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
+        env:
+          NODE_ENV: production
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+      - name: Verify images are copied
+        run: |
+          echo "Verificando estrutura de arquivos..."
+          if [ -d "out/images" ]; then
+            echo "✓ Pasta images encontrada"
+            ls -la out/images/
+            if [ -d "out/images/restoration-examples" ]; then
+              echo "✓ Pasta restoration-examples encontrada"
+              ls -la out/images/restoration-examples/
+            else
+              echo "✗ Pasta restoration-examples NÃO encontrada"
+              echo "Copiando imagens manualmente..."
+              mkdir -p out/images/restoration-examples
+              cp -r public/images/* out/images/ || true
+            fi
+          else
+            echo "✗ Pasta images NÃO encontrada - copiando manualmente"
+            mkdir -p out/images
+            cp -r public/images/* out/images/ || true
+          fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
