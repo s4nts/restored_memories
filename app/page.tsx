@@ -1,109 +1,120 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Heart, Sparkles, Clock, Shield, CheckCircle2, Star, ArrowRight } from 'lucide-react';
-import ImageCompare from '@/components/ImageCompare';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { IcBaselineWhatsapp } from '@/components/IcBaselineWhatsapp';
+import { useState } from "react";
+import {
+  Heart,
+  Sparkles,
+  Clock,
+  Shield,
+  CheckCircle2,
+  Star,
+  ArrowRight,
+} from "lucide-react";
+import ImageCompare from "@/components/ImageCompare";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { IcBaselineWhatsapp } from "@/components/IcBaselineWhatsapp";
 
-const WHATSAPP_LINK = 'https://wa.me/5547988369875?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20restaura%C3%A7%C3%A3o%20de%20fotos%20antigas.%20Pode%20me%20ajudar%3F';
+const WHATSAPP_LINK =
+  "https://wa.me/5547988369875?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20restaura%C3%A7%C3%A3o%20de%20fotos%20antigas.%20Pode%20me%20ajudar%3F";
 
 const examples = [
   {
-    before: '/images/restoration-examples/b1.jpg',
-    after: '/images/restoration-examples/a1.png',
+    before: "/images/restoration-examples/b1.jpg",
+    after: "/images/restoration-examples/a1.png",
   },
   {
-    before: '/images/restoration-examples/b2.png',
-    after: '/images/restoration-examples/a2.png',
+    before: "/images/restoration-examples/b2.png",
+    after: "/images/restoration-examples/a2.png",
   },
   {
-    before: '/images/restoration-examples/b3.jpg',
-    after: '/images/restoration-examples/a3.png',
+    before: "/images/restoration-examples/b3.jpg",
+    after: "/images/restoration-examples/a3.png",
   },
   {
-    before: '/images/restoration-examples/b4.jpg',
-    after: '/images/restoration-examples/a4.jpg',
+    before: "/images/restoration-examples/b4.jpg",
+    after: "/images/restoration-examples/a4.jpg",
   },
 ];
 
 const features = [
   {
     icon: Sparkles,
-    title: 'Restauração Profissional',
-    description: 'Tecnologia avançada combinada com expertise humana para resultados perfeitos',
+    title: "Restauração Profissional",
+    description:
+      "Tecnologia avançada combinada com expertise humana para resultados perfeitos",
   },
   {
     icon: Clock,
-    title: 'Entrega Rápida',
-    description: 'Suas memórias restauradas em até 48 horas',
+    title: "Entrega Rápida",
+    description: "Suas memórias restauradas em até 48 horas",
   },
   {
     icon: Shield,
-    title: '100% Seguro',
-    description: 'Suas fotos são tratadas com total confidencialidade e segurança',
+    title: "100% Seguro",
+    description:
+      "Suas fotos são tratadas com total confidencialidade e segurança",
   },
   {
     icon: Heart,
-    title: 'Satisfação Garantida',
-    description: 'Se não ficar satisfeito, devolvemos 100% do seu investimento',
+    title: "Satisfação Garantida",
+    description: "Se não ficar satisfeito, devolvemos 100% do seu investimento",
   },
 ];
 
 const testimonials = [
   {
-    name: 'Maria Silva',
-    text: 'Emocionante ver as fotos dos meus avós como nunca vi antes. Trabalho impecável!',
+    name: "Maria Silva",
+    text: "Emocionante ver as fotos dos meus avós como nunca vi antes. Trabalho impecável!",
     rating: 5,
   },
   {
-    name: 'João Santos',
-    text: 'Recuperei memórias que achei que estavam perdidas para sempre. Valeu cada centavo!',
+    name: "João Santos",
+    text: "Recuperei memórias que achei que estavam perdidas para sempre. Valeu cada centavo!",
     rating: 5,
   },
   {
-    name: 'Ana Oliveira',
-    text: 'A qualidade da restauração superou todas as minhas expectativas. Recomendo!',
+    name: "Ana Oliveira",
+    text: "A qualidade da restauração superou todas as minhas expectativas. Recomendo!",
     rating: 5,
   },
 ];
 
 const pricing = [
   {
-    name: 'Básico',
-    price: 'R$ 49',
+    name: "Básico",
+    price: "R$ 49",
     features: [
-      'Restauração de 1 foto',
-      'Remoção de manchas e arranhões',
-      'Ajuste de cores',
-      'Entrega em 48h',
-      'Arquivo digital em alta resolução',
+      "Restauração de 1 foto",
+      "Remoção de manchas e arranhões",
+      "Ajuste de cores",
+      "Entrega em 48h",
+      "Arquivo digital em alta resolução",
     ],
   },
   {
-    name: 'Premium',
-    price: 'R$ 129',
+    name: "Premium",
+    price: "R$ 129",
     features: [
-      'Restauração de 3 fotos',
-      'Tudo do plano Básico',
-      'Colorização de fotos P&B',
-      'Restauração avançada de danos',
-      'Entrega em 24h',
-      'Até 5 revisões',
+      "Restauração de 3 fotos",
+      "Tudo do plano Básico",
+      "Colorização de fotos P&B",
+      "Restauração avançada de danos",
+      "Entrega em 24h",
+      "Até 5 revisões",
     ],
     popular: true,
   },
   {
-    name: 'Família',
-    price: 'R$ 299',
+    name: "Família",
+    price: "R$ 299",
     features: [
-      'Restauração de 10 fotos',
-      'Tudo do plano Premium',
-      'Restauração de álbuns completos',
-      'Montagem de painéis',
-      'Entrega prioritária',
-      'Suporte dedicado',
+      "Restauração de 10 fotos",
+      "Tudo do plano Premium",
+      "Restauração de álbuns completos",
+      "Montagem de painéis",
+      "Entrega prioritária",
+      "Suporte dedicado",
     ],
   },
 ];
@@ -120,8 +131,8 @@ export default function Home() {
   };
 
   const handleWhatsAppClick = () => {
-    if (typeof window !== 'undefined') {
-      window.open(WHATSAPP_LINK, '_blank');
+    if (typeof window !== "undefined") {
+      window.open(WHATSAPP_LINK, "_blank");
     }
   };
 
@@ -131,16 +142,18 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <img 
-                src="/images/logo.png" 
-                alt="Memórias Restauradas" 
+              <img
+                src="/images/logo.png"
+                alt="Memórias Restauradas"
                 className="h-10 w-auto"
                 width={40}
                 height={40}
               />
-              <span className="text-2xl font-bold text-gray-900 hidden sm:inline">Memórias Restauradas</span>
+              <span className="text-2xl font-bold text-gray-900 hidden sm:inline">
+                Memórias Restauradas
+              </span>
             </div>
-            <Button 
+            <Button
               onClick={handleWhatsAppClick}
               className="bg-amber-600 hover:bg-amber-700 text-white flex items-center gap-2"
             >
@@ -158,9 +171,9 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <div className="flex justify-center mb-8">
-                <img 
-                  src="/images/logo.png" 
-                  alt="Memórias Restauradas" 
+                <img
+                  src="/images/logo.png"
+                  alt="Memórias Restauradas"
                   className="h-32 sm:h-40 md:h-48 w-auto drop-shadow-lg animate-fade-in"
                   width={200}
                   height={200}
@@ -168,28 +181,33 @@ export default function Home() {
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6">
                 Reviva Suas
-                <span className="block text-amber-600 mt-2">Memórias Preciosas</span>
+                <span className="block text-amber-600 mt-2">
+                  Memórias Preciosas
+                </span>
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-8">
-                Transformamos fotos antigas, danificadas ou desbotadas em memórias vibrantes e eternas.
-                Preserve sua história familiar para as próximas gerações.
+                Transformamos fotos antigas, danificadas ou desbotadas em
+                memórias vibrantes e eternas. Preserve sua história familiar
+                para as próximas gerações.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
+                <Button
                   onClick={handleWhatsAppClick}
-                  size="lg" 
+                  size="lg"
                   className="bg-amber-600 hover:bg-amber-700 text-white text-lg px-8 py-6 flex items-center justify-center gap-2"
                 >
                   <IcBaselineWhatsapp className="w-5 h-5" />
                   Solicitar Orçamento
                   <ArrowRight className="w-5 h-5" />
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
+                <Button
+                  size="lg"
+                  variant="outline"
                   className="border-amber-600 text-amber-600 hover:bg-amber-50 text-lg px-8 py-6"
                   onClick={() => {
-                    document.getElementById('examples')?.scrollIntoView({ behavior: 'smooth' });
+                    document
+                      .getElementById("examples")
+                      ?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
                   Ver Exemplos
@@ -206,7 +224,7 @@ export default function Home() {
                 Veja a Magia Acontecer
               </h2>
               <p className="text-xl text-gray-600">
-                Arraste o controle para comparar o antes e depois
+                Compare o antes e depois lado a lado
               </p>
             </div>
 
@@ -227,8 +245,8 @@ export default function Home() {
                   onClick={() => setActiveExample(index)}
                   className={`h-2 rounded-full transition-all ${
                     activeExample === index
-                      ? 'bg-amber-600 w-8'
-                      : 'bg-gray-300 hover:bg-gray-400 w-2'
+                      ? "bg-amber-600 w-8"
+                      : "bg-gray-300 hover:bg-gray-400 w-2"
                   }`}
                   aria-label={`Ver exemplo ${index + 1}`}
                 />
@@ -250,7 +268,10 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, index) => (
-                <Card key={index} className="border-2 border-amber-100 hover:border-amber-300 transition-all hover:shadow-lg">
+                <Card
+                  key={index}
+                  className="border-2 border-amber-100 hover:border-amber-300 transition-all hover:shadow-lg"
+                >
                   <CardContent className="p-6 text-center">
                     <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <feature.icon className="w-8 h-8 text-amber-600" />
@@ -258,9 +279,7 @@ export default function Home() {
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-600">
-                      {feature.description}
-                    </p>
+                    <p className="text-gray-600">{feature.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -285,8 +304,8 @@ export default function Home() {
                   key={index}
                   className={`relative ${
                     plan.popular
-                      ? 'border-4 border-amber-500 shadow-2xl scale-105'
-                      : 'border-2 border-gray-200'
+                      ? "border-4 border-amber-500 shadow-2xl scale-105"
+                      : "border-2 border-gray-200"
                   }`}
                 >
                   {plan.popular && (
@@ -315,8 +334,8 @@ export default function Home() {
                       onClick={handleWhatsAppClick}
                       className={`w-full flex items-center justify-center gap-2 ${
                         plan.popular
-                          ? 'bg-amber-600 hover:bg-amber-700'
-                          : 'bg-gray-900 hover:bg-gray-800'
+                          ? "bg-amber-600 hover:bg-amber-700"
+                          : "bg-gray-900 hover:bg-gray-800"
                       } text-white`}
                     >
                       <IcBaselineWhatsapp className="w-5 h-5" />
@@ -346,7 +365,10 @@ export default function Home() {
                   <CardContent className="p-6">
                     <div className="flex gap-1 mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                        <Star
+                          key={i}
+                          className="w-5 h-5 fill-amber-400 text-amber-400"
+                        />
                       ))}
                     </div>
                     <p className="text-gray-700 mb-4 italic">
@@ -370,9 +392,9 @@ export default function Home() {
             <p className="text-xl mb-8 text-amber-100">
               Comece agora e veja suas fotos antigas ganharem vida novamente
             </p>
-            <Button 
+            <Button
               onClick={handleWhatsAppClick}
-              size="lg" 
+              size="lg"
               className="bg-white text-amber-600 hover:bg-amber-50 text-lg px-8 py-6 flex items-center gap-2"
             >
               <IcBaselineWhatsapp className="w-5 h-5" />
@@ -387,9 +409,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center gap-3 mb-4 md:mb-0">
-              <img 
-                src="/images/logo.png" 
-                alt="Memórias Restauradas" 
+              <img
+                src="/images/logo.png"
+                alt="Memórias Restauradas"
                 className="h-8 w-auto brightness-0 invert"
                 width={32}
                 height={32}
