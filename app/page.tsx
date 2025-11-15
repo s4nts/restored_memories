@@ -3,7 +3,7 @@
 import ImageCompare from "@/components/ImageCompare";
 import { Button } from "@/components/ui/button";
 import { IcBaselineWhatsapp } from "@/components/IcBaselineWhatsapp";
-import Image from "next/image";
+import StaticImage from "@/components/StaticImage";
 import {
   Star,
   CheckCircle2,
@@ -16,32 +16,22 @@ import {
 const WHATSAPP_LINK =
   "https://wa.me/5547988369875?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20restaura%C3%A7%C3%A3o%20de%20fotos%20antigas.%20Pode%20me%20ajudar%3F";
 
-// Helper function para construir caminhos de imagens que funcionam com basePath
-// O GitHub Actions configura NEXT_PUBLIC_BASE_PATH automaticamente
-const getImagePath = (path: string) => {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-  // Remove barra inicial do path
-  const cleanPath = path.startsWith("/") ? path.slice(1) : path;
-  // Se há basePath, adiciona; senão, usa caminho absoluto
-  return basePath ? `${basePath}/${cleanPath}` : `/${cleanPath}`;
-};
-
 const examples = [
   {
-    before: getImagePath("images/restoration-examples/b1.jpg"),
-    after: getImagePath("images/restoration-examples/a1.png"),
+    before: "/images/restoration-examples/b1.jpg",
+    after: "/images/restoration-examples/a1.png",
   },
   {
-    before: getImagePath("images/restoration-examples/b2.png"),
-    after: getImagePath("images/restoration-examples/a2.png"),
+    before: "/images/restoration-examples/b2.png",
+    after: "/images/restoration-examples/a2.png",
   },
   {
-    before: getImagePath("images/restoration-examples/b3.jpg"),
-    after: getImagePath("images/restoration-examples/a3.png"),
+    before: "/images/restoration-examples/b3.jpg",
+    after: "/images/restoration-examples/a3.png",
   },
   {
-    before: getImagePath("images/restoration-examples/b4.jpg"),
-    after: getImagePath("images/restoration-examples/a4.jpg"),
+    before: "/images/restoration-examples/b4.jpg",
+    after: "/images/restoration-examples/a4.jpg",
   },
 ];
 
@@ -267,8 +257,8 @@ export default function Home() {
               {/* Logo à direita */}
               <div className="flex justify-center md:justify-end">
                 <div className="relative">
-                  <Image
-                    src={getImagePath("images/logo.png")}
+                  <StaticImage
+                    src="/images/logo.png"
                     alt="Memórias Restauradas"
                     width={400}
                     height={400}
@@ -554,8 +544,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center gap-3 mb-4 md:mb-0">
-              <Image
-                src={getImagePath("images/logo.png")}
+              <StaticImage
+                src="/images/logo.png"
                 alt="Memórias Restauradas"
                 width={32}
                 height={32}

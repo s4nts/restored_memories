@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import StaticImage from './StaticImage';
 
 interface ImageCompareProps {
   beforeImage: string;
@@ -16,7 +16,7 @@ export default function ImageCompare({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8" role="group" aria-label="Comparação de imagens antes e depois">
       <figure className="relative w-full h-[400px] md:h-[600px] bg-gray-100 rounded-lg shadow-xl flex items-center justify-center overflow-hidden border-2 border-gray-200">
-        <Image
+        <StaticImage
           src={beforeImage}
           alt={`${beforeLabel}: Foto antes da restauração`}
           width={800}
@@ -31,7 +31,7 @@ export default function ImageCompare({
       </figure>
 
       <figure className="relative w-full h-[400px] md:h-[600px] bg-gray-100 rounded-lg shadow-xl flex items-center justify-center overflow-hidden border-2 border-orange-200">
-        <Image
+        <StaticImage
           src={afterImage}
           alt={`${afterLabel}: Foto depois da restauração`}
           width={800}
