@@ -11,6 +11,9 @@ const nextConfig = {
   },
   // Garantir que assets estáticos sejam copiados corretamente
   // O Next.js copia automaticamente a pasta public/ para out/ quando usa output: 'export'
+  // Se basePath estiver definido, usar; senão, deixar vazio para desenvolvimento
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
+  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || "",
 };
 
 module.exports = nextConfig;
