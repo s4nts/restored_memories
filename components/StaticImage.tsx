@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 
 interface StaticImageProps {
@@ -24,33 +23,11 @@ export default function StaticImage({
   loading,
   sizes,
 }: StaticImageProps) {
-  const [imageSrc, setImageSrc] = useState(src);
-
-  useEffect(() => {
-    // Com domínio customizado (CNAME), o basePath é sempre vazio
-    // O Next.js já gerencia o assetPrefix corretamente via next.config.js
-    // Então podemos usar o src diretamente
-    if (typeof window !== "undefined") {
-      // Verifica se há assetPrefix configurado pelo Next.js
-      const assetPrefix = (window as any).__NEXT_DATA__?.assetPrefix || "";
-      
-      if (assetPrefix) {
-        // Se há assetPrefix, usa ele (para compatibilidade futura)
-        const cleanSrc = src.startsWith("/") ? src.slice(1) : src;
-        setImageSrc(`${assetPrefix}/${cleanSrc}`);
-      } else {
-        // Sem basePath/assetPrefix, usa src original (domínio customizado)
-        setImageSrc(src);
-      }
-    } else {
-      // Server-side: usa src original
-      setImageSrc(src);
-    }
-  }, [src]);
-
+  // O Next.js gerencia automaticamente o basePath configurado no next.config.js
+  // Basta passar o src diretamente que o Next.js adiciona o basePath automaticamente
   return (
     <Image
-      src={imageSrc}
+      src={src}
       alt={alt}
       width={width}
       height={height}
