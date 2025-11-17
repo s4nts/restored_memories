@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { useMemo } from "react";
 
 interface StaticImageProps {
   src: string;
@@ -20,22 +20,40 @@ export default function StaticImage({
   height,
   className,
   priority,
-  loading,
+  loading = "lazy",
   sizes,
 }: StaticImageProps) {
-  // O Next.js gerencia automaticamente o basePath configurado no next.config.js
-  // Basta passar o src diretamente que o Next.js adiciona o basePath automaticamente
+  // Com basePath configurado, precisamos adicionar manualmente o basePath
+  // O Next.js Image component pode não fazer isso corretamente com output: 'export'
+  const imageSrc = useMemo(() => {
+    const basePath = "/restored_memories";
+
+    // Se o src já começa com o basePath, não adiciona novamente
+    if (src.startsWith(basePath)) {
+      return src;
+    }
+
+    // Se o src começa com /, adiciona o basePath
+    if (src.startsWith("/")) {
+      return `${basePath}${src}`;
+    }
+
+    // Caso contrário, retorna o src original
+    return src;
+  }, [src]);
+
+  // Com output: 'export' e images: { unoptimized: true },
+  // usamos uma tag img normal para garantir que os caminhos funcionem
   return (
-    <Image
-      src={src}
+    <img
+      src={imageSrc}
       alt={alt}
       width={width}
       height={height}
       className={className}
-      priority={priority}
-      loading={loading}
+      loading={priority ? "eager" : loading}
       sizes={sizes}
+      style={{ maxWidth: "100%", height: "auto" }}
     />
   );
 }
-

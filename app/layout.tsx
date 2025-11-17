@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   title: 'Memórias Restauradas - Restauração Profissional de Fotos Antigas',
   description: 'Restaure suas fotos antigas, danificadas ou desbotadas com qualidade profissional. Preserve suas memórias familiares para sempre.',
   icons: {
-    icon: '/images/logo.png',
-    apple: '/images/logo.png',
+    icon: '/restored_memories/images/logo.png',
+    apple: '/restored_memories/images/logo.png',
   },
 };
 
