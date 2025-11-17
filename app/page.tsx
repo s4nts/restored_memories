@@ -547,9 +547,9 @@ export default function Home() {
               <StaticImage
                 src="/images/logo.png"
                 alt="Memórias Restauradas"
-                width={24}
-                height={24}
-                className="h-6 w-6 brightness-0 invert"
+                width={32}
+                height={32}
+                className="h-8 w-8 brightness-0 invert"
               />
               <span className="text-xl font-bold">Memórias Restauradas</span>
             </div>
