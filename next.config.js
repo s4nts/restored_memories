@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configuração para GitHub Pages com domínio customizado (CNAME)
-  // Com domínio customizado, o site é servido na raiz, então basePath deve ser vazio
+  // Configuração para GitHub Pages sem CNAME (com subpath)
+  // O site será servido em http://s4nts.github.io/restored_memories/
   output: 'export',
   eslint: {
     ignoreDuringBuilds: true,
@@ -10,10 +10,9 @@ const nextConfig = {
     unoptimized: true,
     remotePatterns: [],
   },
-  // Com domínio customizado (CNAME), não usar basePath
-  // O GitHub Pages serve o site na raiz do domínio
-  basePath: "",
-  assetPrefix: "",
+  // Configuração para GitHub Pages com subpath
+  basePath: "/restored_memories",
+  assetPrefix: "/restored_memories",
 };
 
 module.exports = nextConfig;
